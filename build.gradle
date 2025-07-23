@@ -1,0 +1,59 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Selenium Java
+    implementation 'org.seleniumhq.selenium:selenium-java:4.21.0'
+
+    // WebDriverManager
+    implementation 'io.github.bonigarcia:webdrivermanager:5.8.0'
+
+    // JUnit 5
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+
+    // Cucumber
+    testImplementation 'io.cucumber:cucumber-java:7.8.1'
+    testImplementation 'io.cucumber:cucumber-junit:7.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+}
+
+
+def tags = (findProperty('tags') == null) ? 'not @exclude' : "${findProperty('tags')} and not @exclude"
+
+tasks.register('cucumber', JavaExec) {
+    description = "Running Cucumber Test"
+    group = "verification"
+
+    classpath = configurations.cucumberRuntime +
+            sourceSets.main.output +
+            sourceSets.test.output
+
+    mainClass.set("io.cucumber.core.cli.Main")
+
+    args = [
+            '--plugin', 'pretty',
+            '--plugin', 'html:reports/test-report.html',
+            '--glue', 'java.tests.stepdefs',
+            '--tags', tags,
+            'src/test/resources'
+    ]
+
+    dependsOn 'assemble', 'compileTestJava'
+}
