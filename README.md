@@ -1,1 +1,1 @@
-Pengujian login web saucedemo menggunakan Cucumber, Java, Gradle, dan Selenium.
+Pengujian login valid dan invalid pada website saucedemo menggunakan Cucumber, Java, Gradle, dan Selenium.
