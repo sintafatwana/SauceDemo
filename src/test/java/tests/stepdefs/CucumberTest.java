@@ -9,7 +9,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         glue = {"java.tests.stepdefs"},
         features = {"src/test/resources"},
-        plugin = {"pretty"}
+        plugin = {"pretty","html:reports/test-report.html"}
 )
 
 public class CucumberTest {
