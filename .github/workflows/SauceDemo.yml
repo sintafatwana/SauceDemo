@@ -51,9 +51,3 @@ jobs:
         with:
           PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PUBLISH_DIR: reports
-
-      - name: Debug Git Info
-        run: |
-          git config --list
-          git remote -v
-          git status
