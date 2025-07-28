@@ -10,7 +10,7 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.chrome.ChromeDriver;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -19,12 +19,17 @@ public class LoginStepDef {
 
     @Before
     public void beforeTest(){
-        driver = WebDriverManager.chromedriver().create();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
     }
 
     @After
     public void afterTest(){
-        driver.close();
+        if (driver != null) {
+            driver.quit();  // atau driver.quit() untuk memastikan semua ditutup
+        } else {
+            System.out.println("[WARNING] Driver is null — tidak dapat menutup browser.");
+        }
     }
 
     @Given("user in on login page")
