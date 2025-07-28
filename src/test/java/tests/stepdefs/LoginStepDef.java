@@ -19,7 +19,8 @@ public class LoginStepDef {
 
     @Before
     public void beforeTest(){
-        driver = WebDriverManager.chromedriver().create();
+        WebDriverManager.chromedriver().setup();
+        WebDriver driver = new ChromeDriver();
     }
 
     public void afterTest(){
