@@ -24,11 +24,7 @@ public class LoginStepDef {
 
     @After
     public void afterTest(){
-        if (driver != null) {
-        driver.close();  // atau driver.quit() untuk memastikan semua ditutup
-        } else {
-        System.out.println("[WARNING] Driver is null — tidak dapat menutup browser.");
-        }
+        driver.close();
     }
 
     @Given("user in on login page")
