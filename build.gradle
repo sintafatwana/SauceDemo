@@ -35,7 +35,7 @@ configurations {
 }
 
 
-def tags = (findProperty('tags') == null) ? 'not @exclude' : "${findProperty('tags')} and not @exclude"
+//def tags = (findProperty('tags') == null) ? 'not @exclude' : "${findProperty('tags')} and not @exclude"
 
 tasks.register('cucumber', JavaExec) {
     description = "Running Cucumber Test"
