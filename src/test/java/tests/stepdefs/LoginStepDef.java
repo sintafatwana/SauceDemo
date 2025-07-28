@@ -58,7 +58,7 @@ public class LoginStepDef {
         assertEquals("Sauce Labs Bike Light", productElement.getText());
     }
 
-    @Then("user will see error message")
+    @Then("user will see error message {string}")
     public void userWillSeeErrorMessage(String ErrorMessage) {
         assertTrue(driver.getPageSource().contains(ErrorMessage));
     }
