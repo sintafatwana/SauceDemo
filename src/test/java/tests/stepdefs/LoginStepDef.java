@@ -23,6 +23,7 @@ public class LoginStepDef {
         driver = new ChromeDriver();
     }
 
+    @After
     public void afterTest(){
         if (driver != null) {
         driver.close();  // atau driver.quit() untuk memastikan semua ditutup
