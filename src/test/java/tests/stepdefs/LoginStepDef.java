@@ -22,9 +22,12 @@ public class LoginStepDef {
         driver = WebDriverManager.chromedriver().create();
     }
 
-    @After
     public void afterTest(){
-        driver.close();
+        if (driver != null) {
+        driver.close();  // atau driver.quit() untuk memastikan semua ditutup
+        } else {
+        System.out.println("[WARNING] Driver is null — tidak dapat menutup browser.");
+        }
     }
 
     @Given("user in on login page")
