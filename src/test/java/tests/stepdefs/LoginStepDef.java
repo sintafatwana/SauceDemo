@@ -15,12 +15,12 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class LoginStepDef {
-    WebDriver driver;
+    WebDriverManager.chromedriver().setup();
+    WebDriver driver = new ChromeDriver();
 
     @Before
     public void beforeTest(){
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
+        driver = WebDriverManager.chromedriver().create();
     }
 
     public void afterTest(){
